@@ -91,10 +91,9 @@ def do_transaction(transaction, username, update_balance):
                      fg = "White", 
                      bg = "#253568", 
                      cursor="hand2", 
-                     command = lambda : check_balance(recipient_input, amount_input, number_input, username, transaction, update_balance))
+                     command = lambda : check_balance(recipient_input, amount_input, number_input,   username, transaction, update_balance))
   submit.pack(pady=20, ipadx=20, ipady=10)
 
   transaction.mainloop()
 
 
-do_transaction()
