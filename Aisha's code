@@ -1,0 +1,143 @@
+import tkinter as tk
+from tkinter import *
+from tkinter import messagebox
+from PIL import ImageTk, Image
+
+# the function display transaction is 85% done by Anisa I just added some necessary parts for my code to work, along with some styling.
+def display_transaction(transaction, username, update_balance):
+    transaction = Toplevel(main_window)
+    transaction.title("Transaction")
+    transaction.geometry("800x600")
+    transaction.config(bg="#253568")
+    img = Image.open('FF_logo.png')
+    img = img.resize((500,180))
+    img = ImageTk.PhotoImage(img)
+
+    Label(transaction, image=img, anchor="center", bg="#253568").pack(pady=15, padx=50) 
+
+    global recipient_input, amount_input, date_input, message_input, ocr_number_input
+
+    Label(master = transaction, 
+                         text = "Recipient", 
+                         font = ("Abhaya Libre", 20, "bold"),
+                        fg = "White", 
+                        bg = "#253568").pack(pady = 5)   
+
+    recipient_input = Entry(master = transaction, font=("Abhaya Libre", 18, "bold"),
+                         cursor="hand2",
+                         width=20)
+    recipient_input.pack(pady=10, ipadx=20, ipady=10)
+
+    Label(master = transaction,
+                        text = "Amount", 
+                        font = ("Abhaya Libre", 20, "bold"), 
+                        fg = "White", 
+                        bg = "#253568").pack(pady = 5)
+    amount_input = Entry(master = transaction, font=("Abhaya Libre", 18, "bold"),
+                         cursor="hand2",
+                         width=20)
+    amount_input.pack(pady=10, ipadx=20, ipady=10)
+
+    Label(master = transaction, 
+                    text = "Date", 
+                    font = ("Abhaya Libre", 20, "bold"), 
+                    fg = "White", 
+                    bg = "#253568").pack(pady = 5)
+    date_input = Entry(master = transaction, font=("Abhaya Libre", 18, "bold"),
+                         cursor="hand2",
+                         width=20)
+    date_input.pack(pady=10, ipadx=20, ipady=10)
+
+    Label(master = transaction, 
+                        text = "Message", 
+                        font = ("Abhaya Libre", 20, "bold"), 
+                        fg = "White", 
+                        bg = "#253568"). pack(pady = 5)
+    message_input = Entry(master = transaction, font=("Abhaya Libre", 18, "bold"),
+                         cursor="hand2",
+                         width=20)
+    message_input.pack(pady=10, ipadx=20, ipady=10)
+
+    Label(master = transaction, 
+                         text = "OCR Number", 
+                         font = ("Abhaya Libre", 20, "bold"),
+                           fg = "White", 
+                           bg = "#253568").pack(pady = 5)   
+
+    ocr_number_input = Entry(master = transaction, font=("Abhaya Libre", 18, "bold"),
+                         cursor="hand2",
+                         width=20)
+    ocr_number_input.pack(pady=10, ipadx=(20), ipady=(10))
+    
+    Button(transaction, text = "Submit", font=("Abhaya Libre", 18, "bold"),
+                         bg="#253568",
+                         cursor="hand2",
+                         width=20,
+                         command=lambda:save_input(username)).pack(pady=10, ipadx=(20), ipady=(10))
+    
+    #Check_balance is a fucntion made by ghassan.
+    check_balance(username, transaction, update_balance)
+
+
+#The fucntions save_input() and authenticate_transaction() are done fully by me (Aisha).
+def save_input(username):
+    global sender, amount, recipient, date, message, ocr
+    sender = username
+    recipient = recipient_input.get()
+    amount = amount_input.get()
+    date = date_input.get()
+    message = message_input.get()
+    ocr = ocr_number_input.get()
+
+    authenticate_transaction()
+
+    
+def authenticate_transaction():
+    authenticate = Toplevel(main_window)
+    authenticate.title("Transaction")
+    authenticate.geometry("800x600")
+    authenticate.config(bg="#253568")
+    img = Image.open('FF_logo.png')
+    img = img.resize((500,180))
+    img = ImageTk.PhotoImage(img)
+
+    Label(authenticate, 
+          image=img, 
+          anchor="center", 
+          bg="#253568").pack(pady=15, padx=50)
+
+    Label(authenticate,
+                 text="Authentication",
+                 anchor="center",
+                 font=("Abhaya Libre", 40, "bold"),
+                 bg="#253568").pack(pady=10)
+    
+    Label(authenticate,
+                 text="Are you sure you want this transaction to go through?",
+                 anchor="center",
+                 font=("Abhaya Libre", 30, "bold"),
+                 bg="#253568").pack(pady=10)
+    
+    Label(authenticate,
+                 text=f"""
+        Sender: {sender}
+        Amount: {amount} kr
+        Recipent: {recipient} 
+        Date: {date} 
+        Message: {message}
+        OCR: {ocr} """,
+                 anchor="center",
+                 font=("Abhaya Libre", 20, "bold"),
+                 bg="#253568").pack(pady=10)
+    
+    Button(authenticate, text = "Proceed", font=("Abhaya Libre", 18, "bold"),
+                         bg="#253568",
+                         cursor="hand2",
+                         width=20,
+                         command=authenticate.destroy).pack(pady=10, ipadx=(20), ipady=(10))
+    
+    Button(authenticate, text = "Cancel", font=("Abhaya Libre", 18, "bold"),
+                         bg="#253568",
+                         cursor="hand2",
+                         width=20,
+                         command=authenticate.destroy).pack(pady=10, ipadx=(20), ipady=(10))
