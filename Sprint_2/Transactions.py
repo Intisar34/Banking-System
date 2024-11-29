@@ -1,0 +1,97 @@
+import tkinter as tk
+from tkinter import messagebox
+from PIL import ImageTk, Image
+
+
+#This function checks if the current balance is enough for the transaction:
+def check_balance(recipient_input, amount_input, number_input,username, transaction, update_balance):
+
+    img_5 = Image.open('FF_logo.png')
+    img_5 = img_5.resize((500, 180))
+    img_5 = ImageTk.PhotoImage(img_5)
+ 
+    tk.Label(transaction, image = img_5, anchor="n", bg="#253568").pack(pady = 5, padx = 20)
+
+    #Here I'm using the stored inputs from Aishas code:
+    recipient = recipient_input.get().strip() 
+    transaction_amount = float(amount_input.get())
+    ocr_number = int(number_input.get())
+   
+    if transaction_amount < 0:
+        messagebox.showerror("Invalid amount! Amount must be greater than 0.")
+
+    current_balance = banking_system.accounts.get(username, 0) #Banking_system is the class i extract the current amount from.
+
+     #I'm checking whether there is enough balance in the account in order for the transaction to go through.
+    if current_balance >= transaction_amount:
+        banking_system.accounts[username] -= amount
+        messagebox.showinfo(
+            "Transaction Successfull",
+            f"Transferred {amount:.2f} kr to {recipient}. OCR: {ocr_number}.")
+        
+        update_balance()
+        transaction.destroy()
+   
+    else:
+        messagebox.showerror(
+            "Insufficient Balance",
+            f"Transaction failed. Your current balance is {current_balance:.2f} kr.")
+        
+
+
+#This function creates a transaction form that displays different inputs:
+def do_transaction(transaction, username, update_balance):
+  
+  
+  #Im creating different input boxes where the user is able to input the recipients information.
+  tk.Label(master = transaction, 
+                       text = "Recipient", 
+                       font = ("Abhaya Libre", 20, "bold"),
+                       fg = "White", 
+                       bg = "#253568").pack(pady = 5)
+  recipient_input = tk.Entry(master = transaction, font = ("Abhaya Libre", 20, "bold"))
+  recipient_input.pack()
+  
+  tk.Label(master = transaction,
+                      text = "Amount", 
+                      font = ("Abhaya Libre", 20, "bold"), 
+                      fg = "White", 
+                      bg = "#253568").pack(pady = 5)
+  amount_input = tk.Entry(master = transaction, font = ("Abhaya Libre", 20, "bold"))
+  amount_input.pack()
+
+  tk.Label(master = transaction, 
+                  text = "Date", 
+                  font = ("Abhaya Libre", 20, "bold"), 
+                  fg = "White", 
+                  bg = "#253568"). pack(pady = 5)
+  date_input = tk.Entry(master = transaction, font = ("Abhaya Libre", 20, "bold"))
+  date_input.pack()
+
+  tk.Label(master = transaction, 
+                       text = "OCR Number", 
+                       font = ("Abhaya Libre", 20, "bold"),
+                         fg = "White", 
+                         bg = "#253568").pack(pady = 5)
+  number_input = tk.Entry(master = transaction, font = ("Abhaya Libre", 20, "bold"))
+  number_input.pack()
+
+  tk.Label(master = transaction, 
+                      text = "Message", 
+                      font = ("Abhaya Libre", 20, "bold"), 
+                      fg = "White", 
+                      bg = "#253568"). pack(pady = 5)
+  message_input = tk.Entry(master = transaction, font = ("Abhaya Libre", 20, "bold"))
+  message_input.pack()
+
+  #This is the button for them to be able to confirm that they want to do this specific transaction.
+  submit = tk.Button(master = transaction, 
+                     text = "Submit", 
+                     font = ("Abhaya Libre", 20, "bold"), 
+                     fg = "White", 
+                     bg = "#253568", 
+                     cursor="hand2", 
+                     command = lambda : check_balance(recipient_input, amount_input, number_input,   username, transaction, update_balance))
+  submit.pack(pady=20, ipadx=20, ipady=10)
+
+  transaction.mainloop()
