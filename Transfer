@@ -1,0 +1,71 @@
+def checking_balance(username,update_balance,transfer,amount_to_transfer):
+    balance = banking_system.accounts.get(username,0)
+    if amount_to_transfer <= balance:
+        banking_system.accounts[username] -= amount_to_transfer
+        messagebox.showinfo("Money Transferred","Money Transferred")
+    elif amount_to_transfer == 0:
+        banking_system.accounts[username] -= amount_to_transfer
+        messagebox.showinfo("Money Transferred","Money Transferred")
+    else:
+        messagebox.showerror("Transfer Declined","Transfer Declined")
+
+    update_balance()
+    transfer.destroy()
+    
+    
+def transfering_money(username,update_balance,transfer):
+    
+    global amount_to_transfer, recepient, account_number, date_transfer
+
+    recepient = recepient.get()
+    account_number = account_number.get()
+    date_transfer = date_transfer.get()
+    amount_to_transfer = float(amount_to_transfer.get())
+
+    checking_balance(username,update_balance,transfer,amount_to_transfer)
+
+     
+def do_transfer(transfer,username,update_balance):
+    
+    global recepient, account_number, date_transfer ,amount_to_transfer 
+    
+    tk.Label(transfer, text="Recepient Name: ", 
+             font = ("Abhaya Libre", 20, "bold"), 
+             fg = "White", 
+             bg = "#253568").pack(pady = 5)
+    recepient = tk.Entry(transfer,font = ("Abhaya Libre", 20, "bold"))
+    recepient.pack()
+
+    tk.Label(transfer, text="Account Number: ",
+             font = ("Abhaya Libre", 20, "bold"), 
+             fg = "White", 
+             bg = "#253568").pack(pady = 5)
+    account_number = tk.Entry(transfer,font = ("Abhaya Libre", 20, "bold"))
+    account_number.pack()
+
+    tk.Label(transfer, text="Date: ",
+             font = ("Abhaya Libre", 20, "bold"), 
+             fg = "White", 
+             bg = "#253568").pack(pady = 5)
+    date_transfer = tk.Entry(transfer,font = ("Abhaya Libre", 20, "bold"))
+    date_transfer.pack()
+
+    tk.Label(transfer, text="Amount: ",
+             font = ("Abhaya Libre", 20, "bold"), 
+             fg = "White", 
+             bg = "#253568").pack(pady = 5)
+    amount_to_transfer = tk.Entry(transfer,font = ("Abhaya Libre", 20, "bold"))
+    amount_to_transfer.pack()
+
+    tk.Button(transfer,
+           text = "Transfer Amount", 
+           font = ("Abhaya Libre", 20, "bold"), 
+           fg = "White", 
+           bg = "#253568", 
+           cursor="hand2", 
+           command = lambda :transfering_money(username,update_balance,transfer)).pack()
+    
+    
+    transfer.mainloop()
+
+
