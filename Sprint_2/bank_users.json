@@ -1,0 +1,58 @@
+{
+    "users": {
+        "intisar": {
+            "password": "Intisar12@",
+            "full_name": "Intisar",
+            "Mobile Number": "0504856624",
+            "email": "intisar.warfa12@gmail.com",
+            "address": "angered",
+            "dob": "29-10-2005"
+        },
+        "ikram": {
+            "password": "Ikram123@",
+            "full_name": "Ikram",
+            "Mobile Number": "0504856634",
+            "email": "ikram.warfa12@gmail.com",
+            "address": "angered",
+            "dob": "29-10-2005"
+        },
+        "sireen": {
+            "password": "Sireen12@",
+            "full_name": "Sireen",
+            "Mobile Number": "0504856624",
+            "email": "sireen.abujami@gmail.com",
+            "address": "firhamnsporten",
+            "dob": "29-10-2005"
+        },
+        "Aisha Attar": {
+            "password": "Chalmers2024",
+            "full_name": "Aisha Attar",
+            "Mobile Number": "0707905649",
+            "email": "aishaattar2003@gmail.com",
+            "address": "lindholmen",
+            "dob": "2003"
+        },
+        "Anisa Hashi": {
+            "password": "Chalmers2024!",
+            "full_name": "Anisa",
+            "Mobile Number": "123456789",
+            "email": "ha@gmail.com",
+            "address": "hahahahhaha",
+            "dob": "354323452"
+        }
+    },
+    "account numbers": {
+        "intisar": 0,
+        "ikram": 0,
+        "sireen": "6792271013",
+        "Aisha Attar": "6117353527",
+        "Anisa Hashi": "1322427592"
+    },
+    "accounts": {
+        "intisar": 0,
+        "ikram": 0,
+        "sireen": 0,
+        "Aisha Attar": 0,
+        "Anisa Hashi": 0
+    }
+}
