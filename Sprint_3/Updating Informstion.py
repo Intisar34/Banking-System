@@ -47,7 +47,7 @@ def display_username(updating_info,username):
 
 def update_username(username,username_change):
     update_username = enter_username.get()
-    for username in banking_system.users:
+    
         banking_system.users[update_username] = banking_system.users.pop(username)
         
         banking_system.save_data()
@@ -85,7 +85,6 @@ def update_email(username,email_change):
             messagebox.showerror("Error", "Invalid email address.")
             return
     
-    for username in banking_system.users:
         banking_system.users[username]['email']= update_email
         
         banking_system.save_data()
