@@ -1,0 +1,31 @@
+
+{
+    "users": {
+        "Anisa": {
+            "password": "Chalmers123",
+            "full_name": "Anisa",
+            "Mobile Number": "123456789",
+            "email": "anisa@gmail.com",
+            "address": "Angered",
+            "dob": "2004",
+            "Address": "Lindholmen"
+        },
+        "Aisha": {
+            "password": "Chalmers3",
+            "full_name": "Aisha Attar",
+            "mobile_number": "0123456789",
+            "email": "aisha@gmail.com",
+            "address": "Lindholmen",
+            "dob": "2003"
+        }
+    },
+    "accounts": {
+        "Anisa": 82500.0,
+        "Aisha": 8300.0
+    },
+    "account_numbers": {
+        "Anisa": "4047953485",
+        "Aisha": "8242469412"
+    },
+    "savings_account": {}
+}
